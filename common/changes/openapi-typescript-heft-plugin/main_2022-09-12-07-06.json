@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "Initial package creation.",
+      "type": "minor",
+      "packageName": "openapi-typescript-heft-plugin"
+    }
+  ],
+  "packageName": "openapi-typescript-heft-plugin",
+  "email": "iclanton@users.noreply.github.com"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+
+  "additionalProperties": false,
+
+  "required": ["entries"],
+  "properties": {
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sourcePath", "outputPath"],
+        "properties": {
+          "sourcePath": {
+            "type": "string"
+          },
+          "outputPath": {
+            "type": "string",
+            "pattern": "\\.ts$"
+          }
+        }
+      }
+    }
+  }
+}

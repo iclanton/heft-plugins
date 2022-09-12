@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+
+  "additionalProperties": false,
+
+  "required": ["sourceFile", "outputFolderPath"],
+  "properties": {
+    "sourceFile": {
+      "type": "string"
+    },
+    "outputFolderPath": {
+      "type": "string"
+    },
+    "additionalOptions": {
+      "type": "object",
+      "patternProperties": {
+        ".+": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
