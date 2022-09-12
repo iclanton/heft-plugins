@@ -1,0 +1,17 @@
+{
+  "name": "openapi-client-codegen-heft-plugin",
+  "entries": [
+    {
+      "version": "0.1.0",
+      "tag": "openapi-client-codegen-heft-plugin_v0.1.0",
+      "date": "Mon, 12 Sep 2022 07:08:34 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Initial package creation."
+          }
+        ]
+      }
+    }
+  ]
+}
