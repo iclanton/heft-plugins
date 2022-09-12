@@ -83,12 +83,15 @@ export class OpenApiCodegenPlugin implements IHeftPlugin<IOpenApiCodegenPluginOp
             stdout: string[];
             stderr: string[];
             code: number;
+            wroteToStderr: boolean;
           }
           const result: IRunResult = await new Promise((resolve: (result: IRunResult) => void) => {
             const childProcess: ChildProcess = Executable.spawn(process.argv0, args);
+            let wroteToStderr: boolean = false;
             const stderr: string[] = [];
             childProcess.stderr?.on('data', (data: Buffer) => {
               stderr.push(data.toString());
+              wroteToStderr = true;
             });
 
             const stdout: string[] = [];
@@ -97,7 +100,7 @@ export class OpenApiCodegenPlugin implements IHeftPlugin<IOpenApiCodegenPluginOp
             });
 
             childProcess.on('close', (code: number) => {
-              resolve({ code, stdout, stderr });
+              resolve({ code, stdout, stderr, wroteToStderr });
             });
           });
 
@@ -117,6 +120,12 @@ export class OpenApiCodegenPlugin implements IHeftPlugin<IOpenApiCodegenPluginOp
             logger.emitError(
               new Error(
                 `openapi-generator-cli exited with status code "${result.code}". Logs have been written to "${resolvedOutputFolderPath}".`
+              )
+            );
+          } else if (result.wroteToStderr) {
+            logger.emitError(
+              new Error(
+                `openapi-generator-cli wrote to stderr. Logs have been written to "${resolvedOutputFolderPath}".`
               )
             );
           }

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "openapi-client-codegen-heft-plugin",
+      "comment": "Add handling of an error case.\"",
+      "type": "patch"
+    }
+  ],
+  "packageName": "openapi-client-codegen-heft-plugin"
+}
