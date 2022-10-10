@@ -2,6 +2,18 @@
   "name": "openapi-typescript-heft-plugin",
   "entries": [
     {
+      "version": "0.1.1",
+      "tag": "openapi-typescript-heft-plugin_v0.1.1",
+      "date": "Mon, 10 Oct 2022 02:18:45 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump dependencies."
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.0",
       "tag": "openapi-typescript-heft-plugin_v0.1.0",
       "date": "Mon, 12 Sep 2022 07:08:34 GMT",

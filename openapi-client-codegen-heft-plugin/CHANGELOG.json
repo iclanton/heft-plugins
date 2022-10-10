@@ -2,6 +2,26 @@
   "name": "openapi-client-codegen-heft-plugin",
   "entries": [
     {
+      "version": "0.2.0",
+      "tag": "openapi-client-codegen-heft-plugin_v0.2.0",
+      "date": "Mon, 10 Oct 2022 02:18:45 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "(BREAKING CHANGE) Require the openapi version be specified in the config options."
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Clarify an error message."
+          },
+          {
+            "comment": "Bump dependencies."
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.1",
       "tag": "openapi-client-codegen-heft-plugin_v0.1.1",
       "date": "Mon, 12 Sep 2022 07:24:41 GMT",
