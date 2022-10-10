@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "Bump dependencies.",
+      "type": "patch",
+      "packageName": "openapi-typescript-heft-plugin"
+    }
+  ],
+  "packageName": "openapi-typescript-heft-plugin",
+  "email": "iclanton@users.noreply.github.com"
+}
