@@ -4,8 +4,11 @@
 
   "additionalProperties": false,
 
-  "required": ["sourceFile", "outputFolderPath"],
+  "required": ["openapiVersion", "sourceFile", "outputFolderPath"],
   "properties": {
+    "openapiVersion": {
+      "type": "string"
+    },
     "sourceFile": {
       "type": "string"
     },

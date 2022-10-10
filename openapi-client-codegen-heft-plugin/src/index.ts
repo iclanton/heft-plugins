@@ -6,6 +6,7 @@ import { ChildProcess } from 'child_process';
 const PLUGIN_NAME: string = 'openapi-client-codegen-plugin';
 
 export interface IOpenApiCodegenPluginOptions {
+  openapiVersion: string;
   sourceFile: string;
   outputFolderPath: string;
   additionalOptions: Record<string, string>;
@@ -62,85 +63,93 @@ export class OpenApiCodegenPlugin implements IHeftPlugin<IOpenApiCodegenPluginOp
             baseFolderPath: __dirname
           });
 
+          async function runOpenApiCommandAsync(
+            args: string[],
+            logsOutputBaseFilename: string
+          ): Promise<void> {
+            interface IRunResult {
+              stdout: string[];
+              stderr: string[];
+              code: number;
+              wroteToStderr: boolean;
+            }
+
+            const result: IRunResult = await new Promise((resolve: (result: IRunResult) => void) => {
+              const childProcess: ChildProcess = Executable.spawn(process.argv0, [resolvedToolPath, ...args]);
+              let wroteToStderr: boolean = false;
+              const stderr: string[] = [];
+              childProcess.stderr?.on('data', (data: Buffer) => {
+                stderr.push(data.toString());
+                wroteToStderr = true;
+              });
+
+              const stdout: string[] = [];
+              childProcess.stdout?.on('data', (data: Buffer) => {
+                stdout.push(data.toString());
+              });
+
+              childProcess.on('close', (code: number) => {
+                resolve({ code, stdout, stderr, wroteToStderr });
+              });
+            });
+
+            await FileSystem.ensureFolderAsync(resolvedOutputFolderPath);
+            const stdoutFilename: string = `${resolvedOutputFolderPath}/openapi-generator-cli-${logsOutputBaseFilename}.stdout.log`;
+            const stderrFilename: string = `${resolvedOutputFolderPath}/openapi-generator-cli-${logsOutputBaseFilename}.stderr.log`;
+            await Promise.all([
+              FileSystem.writeFileAsync(stdoutFilename, result.stdout.join('')),
+              FileSystem.writeFileAsync(stderrFilename, result.stderr.join(''))
+            ]);
+
+            if (result.code !== 0) {
+              logger.emitError(
+                new Error(
+                  `openapi-generator-cli exited with status code "${result.code}". ` +
+                    `Logs have been written to "${stdoutFilename}" and ${stderrFilename}.`
+                )
+              );
+            } else if (result.wroteToStderr) {
+              logger.emitError(
+                new Error(
+                  `openapi-generator-cli wrote to stderr. Logs have been written to ` +
+                    `"${stdoutFilename}" and ${stderrFilename}.`
+                )
+              );
+            }
+          }
+
+          await runOpenApiCommandAsync(['version-manager', 'set', options.openapiVersion], 'set-version');
+
           const additionalOptions: string = this._generateOptionsParameter({
             ...DEFAULT_OPTIONS,
             ...options.additionalOptions
           });
 
-          const args: string[] = [
-            resolvedToolPath,
-            'generate',
-            '-i',
-            resolvedSourcePath,
-            '-g',
-            'typescript-fetch',
-            '-o',
-            resolvedOutputFolderPath,
-            additionalOptions
-          ];
-
-          interface IRunResult {
-            stdout: string[];
-            stderr: string[];
-            code: number;
-            wroteToStderr: boolean;
-          }
-          const result: IRunResult = await new Promise((resolve: (result: IRunResult) => void) => {
-            const childProcess: ChildProcess = Executable.spawn(process.argv0, args);
-            let wroteToStderr: boolean = false;
-            const stderr: string[] = [];
-            childProcess.stderr?.on('data', (data: Buffer) => {
-              stderr.push(data.toString());
-              wroteToStderr = true;
-            });
-
-            const stdout: string[] = [];
-            childProcess.stdout?.on('data', (data: Buffer) => {
-              stdout.push(data.toString());
-            });
-
-            childProcess.on('close', (code: number) => {
-              resolve({ code, stdout, stderr, wroteToStderr });
-            });
-          });
-
-          await FileSystem.ensureFolderAsync(resolvedOutputFolderPath);
-          await Promise.all([
-            FileSystem.writeFileAsync(
-              `${resolvedOutputFolderPath}/openapi-generator-cli.stdout.log`,
-              result.stdout.join('')
-            ),
-            FileSystem.writeFileAsync(
-              `${resolvedOutputFolderPath}/openapi-generator-cli.stderr.log`,
-              result.stderr.join('')
-            )
-          ]);
-
-          if (result.code !== 0) {
-            logger.emitError(
-              new Error(
-                `openapi-generator-cli exited with status code "${result.code}". Logs have been written to "${resolvedOutputFolderPath}".`
-              )
-            );
-          } else if (result.wroteToStderr) {
-            logger.emitError(
-              new Error(
-                `openapi-generator-cli wrote to stderr. Logs have been written to "${resolvedOutputFolderPath}".`
-              )
-            );
-          }
+          await runOpenApiCommandAsync(
+            [
+              'generate',
+              '-i',
+              resolvedSourcePath,
+              '-g',
+              'typescript-fetch',
+              '-o',
+              resolvedOutputFolderPath,
+              additionalOptions
+            ],
+            'generate'
+          );
         });
       });
     });
   }
 
   private _generateOptionsParameter(options: Record<string, string>): string {
-    const paramterValue: string = Object.keys(options)
+    const parameterValue: string = Object.keys(options)
       .map((key: string) => {
         return `${key}=${options[key]}`;
       })
       .join(',');
-    return `--additional-properties=${paramterValue}`;
+    return `--additional-properties=${parameterValue}`;
   }
 }
 

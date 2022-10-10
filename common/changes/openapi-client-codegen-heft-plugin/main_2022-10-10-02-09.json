@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "openapi-client-codegen-heft-plugin",
+      "comment": "Clarify an error message.",
+      "type": "patch"
+    }
+  ],
+  "packageName": "openapi-client-codegen-heft-plugin"
+}
