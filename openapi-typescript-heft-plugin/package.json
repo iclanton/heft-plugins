@@ -1,6 +1,6 @@
 {
   "name": "openapi-typescript-heft-plugin",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "lib/OpenApiTypescriptPlugin.js",
   "types": "lib/OpenApiTypescriptPlugin.d.ts",
