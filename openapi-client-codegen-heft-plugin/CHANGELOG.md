@@ -1,6 +1,13 @@
 # Change Log - openapi-client-codegen-heft-plugin
 
-This log was last generated on Mon, 24 Jul 2023 05:48:13 GMT and should not be manually modified.
+This log was last generated on Mon, 24 Jul 2023 06:24:38 GMT and should not be manually modified.
+
+## 0.4.1
+Mon, 24 Jul 2023 06:24:38 GMT
+
+### Patches
+
+- Include the missing heft-plugin.json file.
 
 ## 0.4.0
 Mon, 24 Jul 2023 05:48:13 GMT

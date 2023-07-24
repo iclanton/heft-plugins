@@ -2,6 +2,18 @@
   "name": "openapi-client-codegen-heft-plugin",
   "entries": [
     {
+      "version": "0.4.1",
+      "tag": "openapi-client-codegen-heft-plugin_v0.4.1",
+      "date": "Mon, 24 Jul 2023 06:24:38 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Include the missing heft-plugin.json file."
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.0",
       "tag": "openapi-client-codegen-heft-plugin_v0.4.0",
       "date": "Mon, 24 Jul 2023 05:48:13 GMT",
