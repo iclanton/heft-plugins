@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "Include the missing heft-plugin.json file.",
+      "type": "patch",
+      "packageName": "openapi-client-codegen-heft-plugin"
+    }
+  ],
+  "packageName": "openapi-client-codegen-heft-plugin",
+  "email": "iclanton@users.noreply.github.com"
+}
