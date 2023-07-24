@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/heft/v0/heft-plugin.schema.json",
+
+  "taskPlugins": [
+    {
+      "pluginName": "openapi-client-codegen-plugin",
+      "entryPoint": "./lib/OpenApiCodegenPlugin.js",
+      "optionsSchema": "./lib/schemas/openapi-client-codegen-plugin.schema.json"
+    }
+  ]
+}

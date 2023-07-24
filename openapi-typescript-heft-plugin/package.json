@@ -1,22 +1,22 @@
 {
   "name": "openapi-typescript-heft-plugin",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/OpenApiTypescriptPlugin.js",
+  "types": "lib/OpenApiTypescriptPlugin.d.ts",
   "scripts": {
     "build": "heft test --clean"
   },
   "dependencies": {
-    "@rushstack/node-core-library": "3.53.0",
+    "@rushstack/node-core-library": "3.59.6",
     "chokidar": "~3.4.0",
     "js-yaml": "~3.13.1",
     "openapi-typescript": "~4.0.2"
   },
   "devDependencies": {
-    "@rushstack/eslint-config": "3.1.0",
-    "@rushstack/heft-node-rig": "1.11.0",
-    "@rushstack/heft": "0.48.0",
+    "@rushstack/eslint-config": "3.3.2",
+    "@rushstack/heft-node-rig": "2.2.19",
+    "@rushstack/heft": "0.58.0",
     "@types/js-yaml": "3.12.1",
     "@types/node": "14.17.15"
   },

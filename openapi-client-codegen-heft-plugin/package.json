@@ -1,6 +1,6 @@
 {
   "name": "openapi-client-codegen-heft-plugin",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,13 +8,13 @@
     "build": "heft test --clean"
   },
   "dependencies": {
-    "@rushstack/node-core-library": "3.53.0",
+    "@rushstack/node-core-library": "3.59.6",
     "@openapitools/openapi-generator-cli": "~2.5.2"
   },
   "devDependencies": {
-    "@rushstack/eslint-config": "3.1.0",
-    "@rushstack/heft-node-rig": "1.11.0",
-    "@rushstack/heft": "0.48.0",
+    "@rushstack/eslint-config": "3.3.2",
+    "@rushstack/heft-node-rig": "2.2.19",
+    "@rushstack/heft": "0.58.0",
     "@types/node": "14.17.15"
   },
   "files": [

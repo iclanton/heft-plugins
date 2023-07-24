@@ -1,11 +1,7 @@
 import * as path from 'path';
 import { default as openapiTypescript, OpenAPI2, OpenAPI3, SchemaObject } from 'openapi-typescript';
-import type { HeftConfiguration, HeftSession, IHeftPlugin, ScopedLogger } from '@rushstack/heft';
-import { JsonFile, JsonSchema, Async, FileSystem, Import } from '@rushstack/node-core-library';
-import type { FSWatcher } from 'chokidar';
-
-const chokidar: typeof import('chokidar') = Import.lazy('chokidar', require);
-const jsYaml: typeof import('js-yaml') = Import.lazy('js-yaml', require);
+import type { HeftConfiguration, IHeftTaskSession, IHeftTaskPlugin, IScopedLogger } from '@rushstack/heft';
+import { JsonFile, Async, FileSystem } from '@rushstack/node-core-library';
 
 const PLUGIN_NAME: string = 'openapi-typescript-plugin';
 
@@ -23,49 +19,30 @@ interface IResolvedOpenApiTypescriptPluginEntry extends IOpenApiTypescriptPlugin
   resolvedOutputPath: string;
 }
 
-export class OpenApiTypescriptPlugin implements IHeftPlugin<IOpenApiTypescriptPluginOptions> {
-  public readonly pluginName: string = PLUGIN_NAME;
-
+export default class OpenApiTypescriptPlugin implements IHeftTaskPlugin<IOpenApiTypescriptPluginOptions> {
   public apply(
-    heftSession: HeftSession,
+    heftSession: IHeftTaskSession,
     heftConfiguration: HeftConfiguration,
     options: IOpenApiTypescriptPluginOptions
   ): void {
-    heftSession.hooks.build.tap(PLUGIN_NAME, (build) => {
-      build.hooks.preCompile.tap(PLUGIN_NAME, (preCompile) => {
-        preCompile.hooks.run.tapPromise(PLUGIN_NAME, async () => {
-          const jsonSchema: JsonSchema = JsonSchema.fromFile(
-            `${__dirname}/schemas/openapi-typescript-plugin.schema.json`
-          );
-          jsonSchema.validateObject(options, 'config/heft.json');
-
-          await this._runOpenApiTypescriptAsync(
-            options,
-            heftSession,
-            heftConfiguration,
-            build.properties.watchMode
-          );
-        });
-      });
+    heftSession.hooks.run.tapPromise(PLUGIN_NAME, async () => {
+      await this._runOpenApiTypescriptAsync(options, heftSession, heftConfiguration);
     });
   }
 
   private async _runOpenApiTypescriptAsync(
     options: IOpenApiTypescriptPluginOptions,
-    heftSession: HeftSession,
-    heftConfiguration: HeftConfiguration,
-    isWatchMode: boolean
+    { logger }: IHeftTaskSession,
+    { buildFolderPath }: HeftConfiguration
   ): Promise<void> {
     const resolvedEntries: IResolvedOpenApiTypescriptPluginEntry[] = [];
     for (const entry of options.entries) {
       resolvedEntries.push({
         ...entry,
-        resolvedSourcePath: path.resolve(heftConfiguration.buildFolder, entry.sourcePath),
-        resolvedOutputPath: path.resolve(heftConfiguration.buildFolder, entry.outputPath)
+        resolvedSourcePath: path.resolve(buildFolderPath, entry.sourcePath),
+        resolvedOutputPath: path.resolve(buildFolderPath, entry.outputPath)
       });
     }
-
-    const logger: ScopedLogger = heftSession.requestScopedLogger('openapi-typescript');
 
     await Async.forEachAsync(
       resolvedEntries,
@@ -74,25 +51,11 @@ export class OpenApiTypescriptPlugin implements IHeftPlugin<IOpenApiTypescriptPl
       },
       { concurrency: 5 }
     );
-
-    if (isWatchMode) {
-      for (const entry of resolvedEntries) {
-        const watcher: FSWatcher = chokidar.watch(entry.resolvedSourcePath, {
-          ignoreInitial: true
-        });
-        const boundGenerateOpenApiTypescriptFunction: () => Promise<void> =
-          this._generateOpenApiTypescript.bind(this, entry, logger);
-        watcher.on('add', boundGenerateOpenApiTypescriptFunction);
-        watcher.on('change', boundGenerateOpenApiTypescriptFunction);
-        watcher.on('unlink', boundGenerateOpenApiTypescriptFunction);
-        watcher.on('error', (error: Error) => logger.emitError(error));
-      }
-    }
   }
 
   private async _generateOpenApiTypescript(
     entry: IResolvedOpenApiTypescriptPluginEntry,
-    logger: ScopedLogger
+    logger: IScopedLogger
   ): Promise<void> {
     let fileContents: string;
     try {
@@ -110,6 +73,7 @@ export class OpenApiTypescriptPlugin implements IHeftPlugin<IOpenApiTypescriptPl
     let parsedApiFile: OpenAPI2 | OpenAPI3 | Record<string, SchemaObject>;
     try {
       if (entry.resolvedSourcePath.endsWith('.yaml')) {
+        const { default: jsYaml } = await import('js-yaml');
         parsedApiFile = jsYaml.safeLoad(fileContents);
       } else if (entry.resolvedSourcePath.endsWith('.json')) {
         parsedApiFile = JsonFile.parseString(fileContents);
@@ -141,5 +105,3 @@ export class OpenApiTypescriptPlugin implements IHeftPlugin<IOpenApiTypescriptPl
     }
   }
 }
-
-export default new OpenApiTypescriptPlugin();
