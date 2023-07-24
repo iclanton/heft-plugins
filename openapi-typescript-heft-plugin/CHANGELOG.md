@@ -1,6 +1,13 @@
 # Change Log - openapi-typescript-heft-plugin
 
-This log was last generated on Mon, 10 Oct 2022 02:18:45 GMT and should not be manually modified.
+This log was last generated on Mon, 24 Jul 2023 05:48:13 GMT and should not be manually modified.
+
+## 0.3.0
+Mon, 24 Jul 2023 05:48:13 GMT
+
+### Minor changes
+
+- Support the new Heft plugin API.
 
 ## 0.1.1
 Mon, 10 Oct 2022 02:18:45 GMT
