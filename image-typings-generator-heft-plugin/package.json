@@ -1,0 +1,20 @@
+{
+  "name": "image-typings-generator-heft-plugin",
+  "version": "0.0.0",
+  "description": "Generate typings for images.",
+  "scripts": {
+    "build": "heft test --clean"
+  },
+  "license": "MIT",
+  "main": "./lib/ImageTypingsGeneratorHeftPlugin.js",
+  "types": "./lib/ImageTypingsGeneratorHeftPlugin.d.ts",
+  "devDependencies": {
+    "@rushstack/heft": "~0.63.4",
+    "@rushstack/heft-node-rig": "~2.3.13",
+    "@rushstack/eslint-config": "~3.5.0",
+    "@types/node": "20.10.4"
+  },
+  "dependencies": {
+    "@rushstack/typings-generator": "~0.12.14"
+  }
+}

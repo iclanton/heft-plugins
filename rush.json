@@ -124,7 +124,7 @@
    * LTS schedule: https://nodejs.org/en/about/releases/
    * LTS versions: https://nodejs.org/en/download/releases/
    */
-  "nodeSupportedVersionRange": ">=14.15.0 <15.0.0 || >=16.13.0 <17.0.0",
+  "nodeSupportedVersionRange": ">=20.10.0 <21.0.0",
 
   /**
    * Odd-numbered major versions of Node.js are experimental.  Even-numbered releases
@@ -489,6 +489,11 @@
     //   "tags": [ "tools" ]
     // }
 
+    {
+      "packageName": "image-typings-generator-heft-plugin",
+      "projectFolder": "image-typings-generator-heft-plugin",
+      "shouldPublish": true
+    },
     {
       "packageName": "openapi-typescript-heft-plugin",
       "projectFolder": "openapi-typescript-heft-plugin",

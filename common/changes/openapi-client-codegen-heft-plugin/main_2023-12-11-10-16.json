@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "openapi-client-codegen-heft-plugin",
+      "comment": "Update dependencies.",
+      "type": "patch"
+    }
+  ],
+  "packageName": "openapi-client-codegen-heft-plugin"
+}

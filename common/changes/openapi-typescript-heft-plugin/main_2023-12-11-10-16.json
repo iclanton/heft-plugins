@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "openapi-typescript-heft-plugin",
+      "comment": "Update dependencies.",
+      "type": "patch"
+    }
+  ],
+  "packageName": "openapi-typescript-heft-plugin"
+}

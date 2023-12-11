@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+
+  "additionalProperties": false,
+
+  "required": ["fileExtensions", "generatedTsFolder"],
+  "properties": {
+    "fileExtensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "\\..+"
+      }
+    },
+    "generatedTsFolder": {
+      "type": "string"
+    },
+    "srcFolder": {
+      "type": "string"
+    }
+  }
+}
