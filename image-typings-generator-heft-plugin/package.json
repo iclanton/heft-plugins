@@ -16,5 +16,10 @@
   },
   "dependencies": {
     "@rushstack/typings-generator": "~0.12.14"
-  }
+  },
+  "files": [
+    "lib/**/*",
+    "heft-plugin.json",
+    "CHANGELOG.md"
+  ]
 }

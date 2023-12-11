@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "image-typings-generator-heft-plugin",
+      "comment": "Fix exports.",
+      "type": "patch"
+    }
+  ],
+  "packageName": "image-typings-generator-heft-plugin"
+}
