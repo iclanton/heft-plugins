@@ -1,6 +1,13 @@
 # Change Log - openapi-typescript-heft-plugin
 
-This log was last generated on Mon, 24 Jul 2023 06:24:38 GMT and should not be manually modified.
+This log was last generated on Mon, 11 Dec 2023 10:19:53 GMT and should not be manually modified.
+
+## 0.3.2
+Mon, 11 Dec 2023 10:19:53 GMT
+
+### Patches
+
+- Update dependencies.
 
 ## 0.3.1
 Mon, 24 Jul 2023 06:24:38 GMT
