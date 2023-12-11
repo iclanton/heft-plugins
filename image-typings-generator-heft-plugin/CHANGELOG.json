@@ -2,6 +2,18 @@
   "name": "image-typings-generator-heft-plugin",
   "entries": [
     {
+      "version": "0.1.1",
+      "tag": "image-typings-generator-heft-plugin_v0.1.1",
+      "date": "Mon, 11 Dec 2023 10:25:30 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix exports."
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.0",
       "tag": "image-typings-generator-heft-plugin_v0.1.0",
       "date": "Mon, 11 Dec 2023 10:19:53 GMT",
