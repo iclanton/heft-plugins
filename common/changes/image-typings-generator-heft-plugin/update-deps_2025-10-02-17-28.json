@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "Bump dependencies to Heft 1.0.0",
+      "type": "minor",
+      "packageName": "image-typings-generator-heft-plugin"
+    }
+  ],
+  "packageName": "image-typings-generator-heft-plugin",
+  "email": "iclanton@users.noreply.github.com"
+}
