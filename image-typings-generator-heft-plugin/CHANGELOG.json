@@ -2,6 +2,18 @@
   "name": "image-typings-generator-heft-plugin",
   "entries": [
     {
+      "version": "0.2.0",
+      "tag": "image-typings-generator-heft-plugin_v0.2.0",
+      "date": "Thu, 02 Oct 2025 18:16:07 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Bump dependencies to Heft 1.0.0"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.1",
       "tag": "image-typings-generator-heft-plugin_v0.1.1",
       "date": "Mon, 11 Dec 2023 10:25:30 GMT",
