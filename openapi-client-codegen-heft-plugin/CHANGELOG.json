@@ -2,6 +2,18 @@
   "name": "openapi-client-codegen-heft-plugin",
   "entries": [
     {
+      "version": "0.5.0",
+      "tag": "openapi-client-codegen-heft-plugin_v0.5.0",
+      "date": "Thu, 02 Oct 2025 18:02:24 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Bump dependencies to Heft 1.0.0"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.2",
       "tag": "openapi-client-codegen-heft-plugin_v0.4.2",
       "date": "Mon, 11 Dec 2023 10:19:53 GMT",
