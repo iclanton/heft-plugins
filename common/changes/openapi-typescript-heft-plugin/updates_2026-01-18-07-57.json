@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "openapi-typescript-heft-plugin",
+      "comment": "Bump `openapi-typescript` to v7. Note that this drops support for OpenAPI2.",
+      "type": "minor"
+    }
+  ],
+  "packageName": "openapi-typescript-heft-plugin"
+}
