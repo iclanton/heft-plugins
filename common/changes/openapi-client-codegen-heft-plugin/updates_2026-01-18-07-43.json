@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "openapi-client-codegen-heft-plugin",
+      "comment": "",
+      "type": "none"
+    }
+  ],
+  "packageName": "openapi-client-codegen-heft-plugin"
+}
