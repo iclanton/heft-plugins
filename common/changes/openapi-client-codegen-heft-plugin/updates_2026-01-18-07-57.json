@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "openapi-client-codegen-heft-plugin",
+      "comment": "Bump `@openapitools/openapi-generator-cli`.",
+      "type": "minor"
+    }
+  ],
+  "packageName": "openapi-client-codegen-heft-plugin"
+}

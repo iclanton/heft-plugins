@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { default as openapiTypescript, OpenAPI2, OpenAPI3, SchemaObject } from 'openapi-typescript';
+import { default as openapiTypescript, OpenAPI3, astToString } from 'openapi-typescript';
 import type { HeftConfiguration, IHeftTaskSession, IHeftTaskPlugin, IScopedLogger } from '@rushstack/heft';
 import { JsonFile, Async, FileSystem } from '@rushstack/node-core-library';
 
@@ -18,6 +18,8 @@ interface IResolvedOpenApiTypescriptPluginEntry extends IOpenApiTypescriptPlugin
   resolvedSourcePath: string;
   resolvedOutputPath: string;
 }
+
+type TypeScriptNode = (ReturnType<typeof openapiTypescript> extends Promise<infer U> ? U : never)[number];
 
 export default class OpenApiTypescriptPlugin implements IHeftTaskPlugin<IOpenApiTypescriptPluginOptions> {
   public apply(
@@ -70,7 +72,7 @@ export default class OpenApiTypescriptPlugin implements IHeftTaskPlugin<IOpenApi
       }
     }
 
-    let parsedApiFile: OpenAPI2 | OpenAPI3 | Record<string, SchemaObject>;
+    let parsedApiFile: OpenAPI3;
     try {
       if (entry.resolvedSourcePath.endsWith('.yaml')) {
         const { default: jsYaml } = await import('js-yaml');
@@ -88,7 +90,8 @@ export default class OpenApiTypescriptPlugin implements IHeftTaskPlugin<IOpenApi
 
     let output: string;
     try {
-      output = await openapiTypescript(parsedApiFile);
+      const nodes: TypeScriptNode[] = await openapiTypescript(parsedApiFile);
+      output = astToString(nodes);
     } catch (error) {
       logger.emitError(
         new Error(`Error generating typescript from OpenAPI file ${entry.sourcePath}: ${error}`)
