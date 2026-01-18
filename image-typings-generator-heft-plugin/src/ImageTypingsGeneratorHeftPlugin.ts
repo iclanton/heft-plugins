@@ -10,9 +10,10 @@ export interface IImageTypingsGeneratorHeftPluginOptions {
   srcFolder?: string;
 }
 
-export default class ImageTypingsGeneratorPlugin
-  implements IHeftPlugin<IHeftTaskSession, IImageTypingsGeneratorHeftPluginOptions>
-{
+export default class ImageTypingsGeneratorPlugin implements IHeftPlugin<
+  IHeftTaskSession,
+  IImageTypingsGeneratorHeftPluginOptions
+> {
   public apply(
     heftSession: IHeftTaskSession,
     heftConfiguration: HeftConfiguration,
