@@ -2,6 +2,18 @@
   "name": "openapi-client-codegen-heft-plugin",
   "entries": [
     {
+      "version": "0.6.0",
+      "tag": "openapi-client-codegen-heft-plugin_v0.6.0",
+      "date": "Sun, 18 Jan 2026 07:59:30 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Bump `@openapitools/openapi-generator-cli`."
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.0",
       "tag": "openapi-client-codegen-heft-plugin_v0.5.0",
       "date": "Thu, 02 Oct 2025 18:16:07 GMT",

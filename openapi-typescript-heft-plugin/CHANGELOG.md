@@ -1,6 +1,13 @@
 # Change Log - openapi-typescript-heft-plugin
 
-This log was last generated on Thu, 02 Oct 2025 18:16:07 GMT and should not be manually modified.
+This log was last generated on Sun, 18 Jan 2026 07:59:30 GMT and should not be manually modified.
+
+## 0.5.0
+Sun, 18 Jan 2026 07:59:30 GMT
+
+### Minor changes
+
+- Bump `openapi-typescript` to v7. Note that this drops support for OpenAPI2.
 
 ## 0.4.0
 Thu, 02 Oct 2025 18:16:07 GMT

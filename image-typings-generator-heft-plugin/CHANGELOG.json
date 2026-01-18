@@ -2,6 +2,18 @@
   "name": "image-typings-generator-heft-plugin",
   "entries": [
     {
+      "version": "0.2.1",
+      "tag": "image-typings-generator-heft-plugin_v0.2.1",
+      "date": "Sun, 18 Jan 2026 07:59:30 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump `@rushstack/typings-generator`."
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.0",
       "tag": "image-typings-generator-heft-plugin_v0.2.0",
       "date": "Thu, 02 Oct 2025 18:16:07 GMT",
