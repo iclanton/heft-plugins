@@ -11,12 +11,12 @@
     "@rushstack/heft": "^1.0.0"
   },
   "dependencies": {
-    "@rushstack/node-core-library": "5.15.1",
+    "@rushstack/node-core-library": "5.19.1",
     "@openapitools/openapi-generator-cli": "~2.5.2"
   },
   "devDependencies": {
-    "@rushstack/heft-node-rig": "2.10.0",
-    "@rushstack/heft": "1.0.0",
+    "@rushstack/heft-node-rig": "2.11.12",
+    "@rushstack/heft": "1.1.7",
     "@types/node": "20.10.4"
   },
   "files": [

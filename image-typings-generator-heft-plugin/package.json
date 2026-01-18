@@ -10,12 +10,12 @@
     "@rushstack/heft": "^1.0.0"
   },
   "devDependencies": {
-    "@rushstack/heft": "1.0.0",
-    "@rushstack/heft-node-rig": "2.10.0",
+    "@rushstack/heft": "1.1.7",
+    "@rushstack/heft-node-rig": "2.11.12",
     "@types/node": "20.10.4"
   },
   "dependencies": {
-    "@rushstack/typings-generator": "0.14.47"
+    "@rushstack/typings-generator": "0.15.7"
   },
   "files": [
     "lib/**/*",
